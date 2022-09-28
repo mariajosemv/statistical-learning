@@ -1,5 +1,5 @@
-# 📚Statistical learning
-Notes in LaTeX from the book [An Introduction to Statistical Learning](https://www.statlearning.com/)
+# 📚 Statistical learning
+Notes in LaTeX of my Data science course at the USACH 👩🏻‍🎓🇨🇱, based on the book [An Introduction to Statistical Learning](https://www.statlearning.com/) 📈
 
 ### Contents
 
