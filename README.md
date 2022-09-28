@@ -3,7 +3,7 @@ Notes in LaTeX from the book [An Introduction to Statistical Learning](https://w
 
 ### Contents
 
-1. Linear regression \
+1. [Linear regression](https://github.com/mariajosemv/statistical-learning/tree/main/linear-regression) \
   1.1. Multiple linear regression
     - Introduction.
     - Estimating the model coefficients.
