@@ -1,0 +1,60 @@
+\begin{frame}{Other considerations in the Regression model}{Removing the Additive Assumption}
+
+Consider the standard linear regression model with two variables, 
+        $$Y = \beta_0 + \beta_1 X_1 + \beta_2 + \epsilon$$
+According to this, \pause
+\begin{itemize}
+    \item A one-unit increase in $X_1$ is associated with an average increase in $Y$ of $\beta_1$ units. \pause
+    \item Notice that the presence of $X_2$ does not alter this statement. \pause
+    \item We can extend this model to include an \textbf{interaction term} with $X_1$ and $X_2$. \pause 
+    \begin{equation*}
+        Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1 X_2 + \epsilon.
+    \end{equation*}
+    \item \pause Now $Y$ can be rewritten as, 
+    \begin{align*}
+        Y &=   \beta_0 + (\beta_1 X_1 + \beta_3 X_2)X_1 + \beta_2 X_2 + \epsilon \\
+        Y &=   \beta_0 + \Tilde{\beta_1}X_1 + \beta_2 X_2 + \epsilon \\
+        & \text{with } \Tilde{\beta_1} = \beta_1 + \beta_3 X_2. 
+    \end{align*} 
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Other considerations in the Regression model}{Removing the Additive Assumption}
+
+    \begin{align*}
+        Y &=   \beta_0 + (\beta_1 X_1 + \beta_3 X_2)X_1 + \beta_2 X_2 + \epsilon \\
+        Y &=   \beta_0 + \Tilde{\beta_1}X_1 + \beta_2 X_2 + \epsilon \\
+         & \text{with } \Tilde{\beta_1} = \beta_1 + \beta_3 X_2.
+    \end{align*}
+
+\begin{itemize}
+    \item Since $\Tilde{\beta_1}$ is now a function of $X_1$, the association between $X_1$ and $Y$ is no longer constant. \pause
+    \item A change in the value of $X_2$ will change the association between $X_1$ and $Y$. \pause
+    \item Similarly, a change in the value of $X_1$ changes the association between $X_2$ and $Y$.\pause
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Other considerations in the Regression model}{Removing the Additive Assumption}
+
+    \begin{align*}
+        Y &=   \beta_0 + (\beta_1 X_1 + \beta_3 X_2)X_1 + \beta_2 X_2 + \epsilon \\
+        Y &=   \beta_0 + \Tilde{\beta_1}X_1 + \beta_2 X_2 + \epsilon \\
+        & \text{with } \Tilde{\beta_1} = \beta_1 + \beta_3 X_2.
+    \end{align*}
+    
+
+\begin{block}{The hierarchical principle}
+        If we include an \textbf{interaction} in a model, we should also include the \textbf{main eﬀects}, even if the p-values associated with principle their coeﬃcients are not significant.
+\end{block} \pause
+Why? \pause
+\begin{itemize}
+    \item If $X_1 \times X_2$ is related to the response, then whether or not the coeﬃcients of $X_1$ or $X_2$ are exactly zero is of little interest. \pause
+    \item $X_1 \times X_2$ is typically correlated with $X_1$ and $X_2$, and so leaving them out tends to alter the meaning of the interaction. \pause
+\end{itemize}
+    
+\end{frame}
+
+
+    
+

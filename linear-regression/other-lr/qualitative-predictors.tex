@@ -1,0 +1,112 @@
+\begin{frame}{Other considerations in the Regression model}{Qualitative predictors: Predictors with only two levels}
+
+\begin{itemize}
+    \item Suppose that we wish to investigate differences in credit card balance between people who own a house vs those who don't. \pause
+    \item We can adding the qualitative predictor to the regression as a \textcolor{blue}{dummy variable}. \pause 
+        \begin{equation*}
+        x_i = 
+        \begin{cases} 
+            1 & \text{ if $i$th person owns a house,}\\
+            0 & \text{ if $i$th person does not own a house,}
+        \end{cases}
+    \end{equation*}
+
+    \item This results in the model,
+    \begin{equation*}
+        y_i = \beta_0 + \beta_1 x_i + \epsilon_i = 
+        \begin{cases}
+              \beta_0 + \beta_1 + \epsilon_i & \text{if $i$th person owns a house,} \\
+                 \beta_0 + \epsilon_i & \text{if $i$th person does not.}
+        \end{cases}
+    \end{equation*}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Other considerations in the Regression model}{Qualitative predictors}
+    
+    \begin{equation*}
+        y_i = \beta_0 + \beta_1 x_i + \epsilon_i = 
+        \begin{cases}
+              \beta_0 + \beta_1 + \epsilon_i & \text{if $i$th person owns a house,} \\
+                 \beta_0 + \epsilon_i & \text{if $i$th person does not.}
+        \end{cases}
+    \end{equation*}
+
+\begin{itemize}
+    \item $\beta_0$ is the average credit card balance among those who do not own a house. \pause
+    \item $\beta_0 + \beta_1$ is the average credit card balance among those who do own their house. \pause
+    \item $\beta_1$ is the average diﬀerence in credit card balance between owners and non-owners. \pause
+    \item To test significance, we test $H_0: \beta_1 = 0$ \pause
+\end{itemize}
+
+\begin{block}{Note}
+    $\rightarrow$ The decision to code owners as 1 and non-owners as 0 is arbitrary, and has no eﬀect on the regression fit. \pause \\
+    $\rightarrow$ That decision only alter the interpretation of the coeﬃcients.
+\end{block}
+
+
+\end{frame}
+
+
+\begin{frame}{Other considerations in the Regression model}{Qualitative predictors: Predictors with More that Two Levels}
+
+\begin{itemize}
+    \item Suppose now that we want to investigate differences in credit card balance between people who lives in one of these \textbf{regions}: South, West, East. \pause
+    \item Single dummy variable cannot represent all possible values, so we create additional ones. \pause
+
+\begin{equation*}
+        x_{i1} = 
+        \begin{cases} 
+            1 & \text{ if $i$th person is from the South,}\\
+            0 & \text{ if $i$th person is not from the South,}
+        \end{cases}
+    \end{equation*}
+
+\begin{equation*}
+        x_{i2} = 
+        \begin{cases} 
+            1 & \text{ if $i$th person is from the West,}\\
+            0 & \text{ if $i$th person is not from the West,}
+        \end{cases}
+    \end{equation*}
+    \item This results in the model, \pause
+
+\begin{equation*}
+        y_i = \beta_0 + \beta_1 x_{i1} + \beta_{i2} + \epsilon_i = 
+        \begin{cases}
+        \beta_0 + \beta_1 + \epsilon_i & \text{if $i$th person is from the South,} \\
+        \beta_0 + \beta_2 + \epsilon_i & \text{if $i$th person is from the West,} \\
+        \beta_0 + \epsilon_i & \text{if $i$th is from the East.}
+        \end{cases}
+\end{equation*}
+    
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Other considerations in the Regression model}{Qualitative predictors: Predictors with More that Two Levels}
+
+\begin{equation*}
+        y_i = \beta_0 + \beta_1 x_{i1} + \beta_{i2} + \epsilon_i = 
+        \begin{cases}
+        \beta_0 + \beta_1 + \epsilon_i & \text{if $i$th person is from the South,} \\
+        \beta_0 + \beta_2 + \epsilon_i & \text{if $i$th person is from the West,} \\
+        \beta_0 + \epsilon_i & \text{if $i$th is from the East.}
+        \end{cases}
+\end{equation*}
+
+\begin{itemize}
+    \item $\beta_0$ is the average credit card balance for individuals from the East. \pause
+    \item $\beta_1$ is the diﬀerence in the average balance between people from the South versus the East. \pause
+    \item $\beta_2$ is the diﬀerence in the average balance between those from the West versus the East.
+\end{itemize}
+
+\begin{block}{Notes}
+    $\rightarrow$ The level selected as the baseline category is arbitrary, and the final predictions for each group will be the same regardless of this choice. \\ \pause
+    $\rightarrow$ The coeﬃcients and their p-values \textbf{do depend} on the choice of dummy variable coding. \\ \pause
+    $\rightarrow$ To test significance, we can use F-test on $H_0: \beta_1 = \beta_0 = 0$. \textbf{This does not depend on the coding}. 
+\end{block}
+
+\end{frame}

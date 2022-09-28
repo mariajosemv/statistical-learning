@@ -1,0 +1,333 @@
+\begin{frame}{Multiple regression}{Some important questions}
+Now we have to evaluate the model:
+\begin{enumerate}
+    \item <1-> Is at least one of the predictors $x_1, x_2, \cdots x_n$ useful in predicting the response? \pause    
+    \item <2-4> Do all the predictors help to explain $Y$, or is only a subset of the predictors useful? \pause
+    \item <3-4> How well does the model fit the data? \pause
+    \item <4>Given a set of predictor values, what response value should we predict, and how accurate is our prediction? \pause 
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%% QUESTION 1 %%%%%%%%%%%%%%%%%5
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors?}
+
+\begin{itemize}
+    \item In simple linear regression ($y = \beta_0 + \beta_1 x$), we simply check whether $\beta_1 = 0$ through hypothesis testing. \pause
+    \item Here, we extend that idea with $p$ predictors. \pause
+    \item We need to ask:
+    \begin{enumerate}
+        \item Are all regression coefficients zero? \pause
+        \item Are only a particular subset of regression coefficients zero?
+    \end{enumerate}
+
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are all regression coefficients zero? }
+
+To know whether all of the regression coeﬃcients are zero, i.e. $\beta_1 = \beta_2 = \cdots = \beta_p = 0.$, we test the null hypothesis, 
+
+$$H_0: \beta_1 = \beta_2 = \cdots = \beta_p = 0 $$ 
+
+versus the alternative \pause
+
+$$H_a: \text{ at least one } \beta_j \text{ is non-zero}.$$
+
+This hypothesis test is performed by computing the \textbf{F-statistic}.
+    
+\end{frame}
+
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are all regression coefficients zero? }
+
+Assuming homoscedasticity, the F-statistic is given by, 
+
+$$F = \frac{ (TSS - RSS)/p   }{RSS/(n-p-1)},$$
+
+where \pause
+
+\begin{itemize}
+    \item $TSS = \sum(y_i - \bar{y})^2$ is the \textbf{total sum of squares}. Measures the total variance in the response $Y$ , and can be thought of as the amount of variability inherent in the response before the regression is performed. \pause
+    \item $RSS = \sum(y_i - \hat{y}_i)^2$ is the \textbf{residual sum of squares}. Measures the amount of variability that is left unexplained after performing the regression. \pause
+    \item $TSS - RSS \rightarrow$ is the amount of variability in the response that is explained (or removed) by performing the regression. \pause
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are all regression coefficients zero? }
+
+\begin{itemize}
+    \item If we assume homoscedasticity then, \\ $\mathbb{E} \{  RSS / (n-p-1)  \} = \sigma^2$  \pause 
+    \item Assuming that $H_0$ is true, then \\ $\mathbb{E} \{  (TSS - RSS) / p  \} = \sigma^2$.  \pause 
+
+    \item Therefore, \textcolor{blue}{if $H_0$ is true} (i.e. there is no relationship between $x_1, \cdots x_p$ and $Y$), \textcolor{blue}{F-statistic is closer to $1$.} \pause
+
+    \item On other hand, if $H_0$ is not true, \\
+    $\mathbb{E} \{  (TSS - RSS) / p  \} > \sigma^2 \Rightarrow F > 1$ \pause
+
+    \item How large does the F-statistic need to be before we can reject $H_0$ and conclude that there is a relationship? \pause \\ 
+    $\rightarrow$ It depends on the values of $n$ and $p$. 
+ 
+\end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are all regression coefficients zero? }
+
+When $n$ is large, \pause
+
+\begin{itemize}
+    \item F-statistic approximately follows
+an F-distribution, even if the errors are not normally distributed. \pause
+
+    \item a F-statistic that is just a little larger than $1$ might still provide evidence against $H_0$.
+\end{itemize} \pause
+
+When $n$ is small, \pause
+
+\begin{itemize}
+    \item A larger F-statistic is is needed to reject $H_0$. \pause
+\end{itemize}
+
+For any value $n$ and $p$, \pause
+\begin{itemize}
+
+    \item Compute the $p-value$: The p-value indicates how likely it is to observe the results due to chance, assuming $H_0$. \pause
+        \begin{itemize}
+            \item Small p-value: very unlikely that $H_0$ is true $\rightarrow$ \textcolor{blue}{Reject $H_0$}. \pause
+            \item Large p-value: very likely that $H_0$ is true $\rightarrow$ \textcolor{blue}{Fail to reject $H_0$.} \pause 
+        \end{itemize}
+    
+\end{itemize}
+
+Typical p-value cutoﬀs for rejecting the null hypothesis are $5\%$ or $1\%$.
+    
+\end{frame}
+
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are only a particular subset of regression coefficients zero?}
+
+Sometimes we want to test the hypothesis if a particular subset $q$ of the coeﬃcients are zero, \pause
+$$H_0: \beta_{p-q+1} = \beta_{p-q+2} = \cdots = \beta_p = 0$$ \pause
+versus the alternative, \pause
+$$H_a: \text{ One or more than } q \text{ restrictions assuming } H_0 \text{ does not stand}. $$  \pause
+
+To test the hypothesis: \pause
+\begin{itemize}
+    \item Fit a regression model $y_0$ that uses all variables except $q$. \pause
+    \item Calculate the residual sum of squares for that model, $RSS_0$. \pause
+    \item Compute the appropiate F-statistic
+    $$F = \frac{(RSS_0 - RSS)/q}{RSS/(n-p-1)}.$$ \pause
+    \item Compute p-values.
+    
+\end{itemize}
+
+
+
+\end{frame}
+
+\begin{frame}{Important questions}{One: Is There a Relationship Between the Response and Predictors? \\ - Are only a particular subset of regression coefficients zero?}
+
+    \begin{itemize}
+        \item The approach of using an F -statistic to test for any association between the predictors and the response works when $p$ is relatively small compared to $n$. \pause
+        \item If $p > n$ then there are more coeﬃcients $\beta_j$ to estimate than observations from which to estimate them. \pause
+        \item We cannot even fit the multiple linear regression model using least squares, so the \textbf{F-statistic cannot be used}. 
+    \end{itemize}
+
+    
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%% OUTLINE %%%%%%%%%%%%%%%%%%%
+\begin{frame}[noframenumbering]{Multiple regression}{Some important questions}
+
+\begin{enumerate}
+    \item<1> Is at least one of the predictors $x_1, x_2, \cdots x_n$ useful in predicting the response?  
+    \item<1-2> Do all the predictors help to explain $Y$, or is only a subset of the predictors useful? 
+    \item<1> How well does the model fit the data? 
+    \item<1> Given a set of predictor values, what response value should we predict, and how accurate is our prediction?
+    
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%% QUESTION 2 %%%%%%%%%%%%%%%%%5
+\begin{frame}{Important questions}{Two: Deciding on Important Variables}
+
+Ideally, we would like to perform \textbf{variable selection} by trying out a lot of diﬀerent models, each containing a diﬀerent subset of the predictors. \pause For example, if $p=2$, then we can consider, \pause
+
+\begin{enumerate}
+    \item A model containing no variables, \pause
+    \item A model containing $x_1$ only, \pause
+    \item A model containing $x_2$ only, and \pause
+    \item A model containing both $x_1$ and $x_2$. \pause   
+\end{enumerate}
+
+Then we can use Akaike information criterion (AIC), Bayesian information criterion (BIC), and adjusted $R^2$ to select the best model. \pause \\
+
+Unfortunately, there are a \textcolor{blue}{total of $2^p$ models} that contain subsets of $p$ variables. \pause  \\
+
+\begin{itemize}
+    \item If if $p = 2$, then there are $2^2 = 4$ models to consider. \pause
+    \item if $p = 30$, then we must consider $2^{30} = 1.073.741.824$ models! \\ \pause $\rightarrow$ \textbf{This is not practical!}
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Two: Deciding on Important Variables}
+
+So when $p$ is not small, we can consider these automated approaches: \pause
+
+\begin{itemize}
+    \item \textbf{Forward selection} \pause
+     \begin{enumerate}
+            \item We begin with by fitting the \textit{null model} $y_0$. \pause
+            \item Fit $p$ simple linear regressions and compute its RSS. \pause
+            \item Add to the null model the variable that results in the lowest RSS, this create a new model $y_1$. \pause
+            \item Repeat the step $2$ and $3$ but now with $p-1$ regressors. \pause
+            \item Continue until some stopping rule is satisfied. \pause
+        \end{enumerate}
+
+    \item \textbf{Backward selection} \pause
+     \begin{enumerate}
+            \item We start with all the variables in the model $y_p$. \pause
+            \item Remove the variable with the largest p-value. \pause
+            \item The new $(p - 1)$-variable model is fit, and the variable with the largest p-value is removed. \pause
+            \item Continue until some stopping rule is satisfied. 
+        \end{enumerate}
+        
+\end{itemize}
+    
+\end{frame}
+
+
+\begin{frame}{Two: Deciding on Important Variables}
+
+\begin{itemize}
+    \item \textbf{Mixed selection}: a combination of forward and backward selection. \pause
+    \begin{enumerate}
+        \item We start with the null model and then we successively add the variables that provides the best fit (lowest RSS). \pause
+        \item If at any point the p-value for one of the variables in the model rises above a certain threshold, remove that variable. \pause
+        \item We continue to perform these forward and backward steps until all variables in the model have a suﬃciently low p-value, and all variables outside the model would have a large p-value if added to the model. \pause
+    \end{enumerate}
+\end{itemize}
+
+Important notes: \pause
+\begin{itemize}
+    \item Backward selection cannot be used if $p > n$. \pause
+    \item Forward selection can always be used but might include variables early that later become redundant. \pause
+    \item Mixed selection can remedy redundant variables.
+\end{itemize}
+
+        
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%% OUTLINE %%%%%%%%%%%%%%%%%%%
+\begin{frame}[noframenumbering]{Multiple regression}{Some important questions}
+
+\begin{enumerate}
+    \item<1> Is at least one of the predictors $x_1, x_2, \cdots x_n$ useful in predicting the response?  
+    \item<1> Do all the predictors help to explain $Y$, or is only a subset of the predictors useful? 
+    \item<1-2> How well does the model fit the data? 
+    \item<1> Given a set of predictor values, what response value should we predict, and how accurate is our prediction?
+    
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%% QUESTION 3 %%%%%%%%%%%%%%%%%
+\begin{frame}{Important questions}{Three: Model fit}
+
+The quality of a linear regression fit is typically assessed using two related quantities: \pause
+
+\begin{enumerate}
+    \item Residual standard error (RSE) \pause
+    \item $R^2$ statistic.
+ 
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Important questions}{Three: Model fit - Residual standard error (RSE)}
+
+\begin{itemize}
+    \item Recall that from every model, there is some error term $\epsilon$ associated with each observation. \pause
+
+    \item The RSE is an estimate of the standard
+deviation of $\epsilon$. \pause
+
+    \item Roughly speaking, it is the average amount that the response will deviate from the true regression line. \pause
+  
+\end{itemize}
+
+\begin{align*}
+    RSE &= \sqrt{\frac{1}{n-2} RSS} = \sqrt{\frac{1}{n-2} \sum_{i=1}^n (y_i - \hat{y}_i)^2}
+\end{align*} \pause
+
+\begin{itemize}
+    \item If $\hat{y}_i \approx y_i \, \forall i \in n$, then RSE is small. $\rightarrow$ \textcolor{blue}{The model fits the data well.} \pause
+
+    \item If $\hat{y}_i$ is very far from $y_i$ for one or more observations, then RSE may be quite large. $\rightarrow$ \textcolor{blue}{The model doesn’t fit the data well.}
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Important questions}{Three: Model fit - $R^2$ statistic}
+
+
+\begin{itemize}
+    \item The $R^2$ it's the proportion of variance explained. \pause
+    \item It always takes on a value between 0 and 1, and is independent of the scale of $Y$. \pause
+\end{itemize}
+
+$$R^2 = \frac{TSS - RSS}{TSS} = 1 - \frac{RSS}{TSS}$$
+
+\begin{itemize}
+    \item \textcolor{blue}{TSS} measures the \textcolor{blue}{total variance in $Y$} \pause % and can be thought of as the amount of variability inherent in the response before the regression is performed.
+    \item \textcolor{blue}{RSS} measures the \textcolor{blue}{variability that is left unexplained} after performing the regression. \pause
+    \item \textcolor{blue}{TSS - RSS} is the amount of \textcolor{blue}{variability in $Y$ that is explained} (or removed) by performing the regression. \pause
+    \item $R^2$ measures the proportion of variability in $Y$ that can be explained using $X$. \pause
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%% OUTLINE %%%%%%%%%%%%%%%%%%%
+\begin{frame}[noframenumbering]{Multiple regression}{Some important questions}
+
+\begin{enumerate}
+    \item<1> Is at least one of the predictors $x_1, x_2, \cdots x_n$ useful in predicting the response?  
+    \item<1> Do all the predictors help to explain $Y$, or is only a subset of the predictors useful? 
+    \item<1> How well does the model fit the data? 
+    \item<1-2> Given a set of predictor values, what response value should we predict, and how accurate is our prediction?
+    
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Important questions}{Four: Predictions}
+
+The accuracy of our predictions depends on three sorts of uncertainty: \pause
+
+\begin{enumerate}
+    \item \textbf{The reducible error} 
+    \\ $\rightarrow$ Related to the inaccuracy in the coeﬃcient estimates.  \pause 
+    \\ $\rightarrow$ We compute a confidence interval in order to determine how close $\hat{Y}$ will be to $f(X)$. \pause
+
+    \item \textbf{Model bias} \pause 
+    \\ $\rightarrow$ Assuming a linear model for $f(X)$ is an approximation of reality. \pause
+
+    \item \textbf{The irreducible error.} \pause \\
+    $\rightarrow$ We use \textcolor{blue}{prediction intervals} to answer how much will $\hat{Y}$ vary from $Y$. \pause \\
+    $\rightarrow$  Prediction intervals are always wider than confidence intervals.
+    
+\end{enumerate}
+    
+\end{frame}
