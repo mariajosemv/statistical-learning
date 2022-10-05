@@ -3,15 +3,5 @@ Notes in LaTeX of my Data science course at the USACH 👩🏻‍🎓🇨🇱, b
 
 ### Contents
 
-1. [Linear regression](https://github.com/mariajosemv/statistical-learning/tree/main/linear-regression) \
-  1.1. Multiple linear regression
-    - Introduction.
-    - Estimating the model coefficients.
-    - Some important questions. 
-  
-    1.2. Other considerations in the Regression model 
-    - Qualitative predictors.
-    - Removing additive assumption.
-    - Potential problems.
-
-2. Classification (in progress). 
+1. [Linear regression](https://github.com/mariajosemv/statistical-learning/tree/main/linear-regression) 
+2. [Classification](https://github.com/mariajosemv/statistical-learning/tree/main/classification)
