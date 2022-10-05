@@ -1,0 +1,69 @@
+\subsection{Introduction}
+\begin{frame}{Generative models}{Introduction}
+
+\begin{itemize}
+    \item Suppose that we wish to classify an observation into one of $K$ classes, where $K \geq 2$. \pause 
+    
+    \item Let $\pi_K$ represent the \textbf{prior} probability that a randomly chosen observation comes from the prior $k$th class. \pause
+    
+    \item Let $f_k(X) \equiv  Pr(X|Y = k)$ denote the \textit{density function} of $X$ for an observation that comes from the $k$th class. \\ \pause
+    
+    $\rightarrow$ $f_k(x)$ is relatively large if there is a high probability that an observation in the $k$th class has $X \approx x$. \\ \pause
+    $\rightarrow$ $f_k (x)$ is small if it is very unlikely that an observation in the $k$th class has $X \approx x$. \pause 
+
+    \item Then Bayes’ theorem states that, \pause 
+
+
+    $$ p_k(x) =  \text{Pr}(Y=k|X=x) = \frac{\pi_k f_k (x)}{  \sum_{l=1}^K \pi_l f_l(x)  }.$$
+ 
+    
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Generative models}{Introduction}
+
+        \begin{equation}\label{eq:bayes}
+           p_k(x) =  \text{Pr}(Y=k|X=x) = \frac{\pi_k f_k (x)}{  \sum_{l=1}^K \pi_l f_l(x)  }. 
+        \end{equation}
+
+\begin{itemize}
+    
+    \item We only need the estimates of $\pi_k$ and $f_k(x).$ \pause 
+    \item Estimating $\pi_k$ is easy if we have a random sample from the population. \pause  \\ 
+    $\rightarrow $ Compute the fraction of the observations that belong to the $k$th class. \pause
+    
+    \item Estimating the $f_k(x)$ is much more challenging. \pause
+    
+    \item As we will see, to estimate $f_k(x)$, we will typically have to make some simplifying assumptions. \pause
+
+    \item We'll discuss three classifiers that use diﬀerent
+estimates of $f_k(x)$: \pause \\ 
+    \begin{itemize}
+        \item \textit{Linear discriminant analysis}, \pause 
+        \item \textit{Quadratic discriminant analysis}, \pause
+        \item \textit{Naive Bayes}.
+    \end{itemize}
+        
+\end{itemize}
+    
+\end{frame}
+
+
+\subsection{Linear discriminant analysis for $p = 1$}
+\input{generative-models/linear_p1.tex}
+
+
+\subsection{Linear discriminant analysis for $p > 1$}
+\input{generative-models/linear_pg1.tex}
+
+
+\subsection{Quadratic discriminant analysis}
+\input{generative-models/quadratic_analysis.tex}
+
+\subsection{When to use Linear vs quadratic discriminant analysis?}
+\input{generative-models/linear-vs-quadratic.tex}
+
+
+\subsection{Naive Bayes}
+\input{generative-models/naive-bayes.tex}

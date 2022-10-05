@@ -1,0 +1,23 @@
+\begin{frame}{Quadratic discriminant analysis}
+    \begin{itemize}
+        \item Assumes that the discriminant observations from each class are drawn from a \textbf{Gaussian distribution}. \pause 
+        
+        \item The idea is to compute each estimate and then plug them Bayes' theorem in order to perform a prediction. \pause 
+
+        \item However, QDA assumes that each class has its \textbf{own covariance matrix}. \pause 
+        
+        \\ $\rightarrow$ Assumes that an observation from the $k$th class is of the form $X \sim N (\mu_k , \Sigma_k )$, where $\Sigma_k$ is a covariance matrix for the $k$th class. \pause 
+
+        \item Under this assumption, the Bayes classifier assigns an observation $X = x$ to the class for which \pause 
+
+        \begin{equation}\label{eq:delta-quatratic}
+            \delta_k = - \frac{1}{2} x^T \Sigma_{k}^{-1} x + x^T \Sigma_{k}^{-1} \mu_k - \frac{1}{2} \mu_k^T \Sigma_{k}^{-1} \mu_k - \frac{1}{2} \log{|\Sigma_{k}|} + \log{\pi_k}
+       \end{equation} 
+
+       is largest. \pause 
+
+        \item So the QDA classifier involves plugging estimates for $\mu_k , \Sigma_k$ and $\pi_k$ into (\ref{eq:delta-quatratic}), and then assigning an observation $X = x$ to the class for which this quantity is \textbf{largest}.
+        
+    \end{itemize}
+\end{frame}
+

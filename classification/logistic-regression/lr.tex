@@ -1,0 +1,118 @@
+
+\subsection{The logistic model}
+\begin{frame}{Logistic regression}{Logistic Model}
+
+\begin{itemize}
+    \item Here we are going to deal with a binary classification, i.e. $Y = 0$ or $Y= 1$. \pause 
+    \item The idea is to find $p(X)$ such as $p(X) = Pr(Y=1|X)$.  \pause
+    \item The logistic model suggest to use, v
+        \begin{equation}\label{eq:lr-one}
+            p(X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}  \pause
+        \end{equation} \pause 
+    \item The function outputs between 0 and 1 and will always produce an S-shaped curve of this form.  \pause
+    \item Regardless of the value of $X$, we will obtain a probability.  \pause
+    \item To fit the model, we use a method called \textbf{maximum likelihood}
+        
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Logistic regression}{Estimating the model coefficients}
+
+\begin{itemize}
+    \item With a little of manipulation, equation (\ref{eq:lr-one}) becomes, \pause
+
+    \begin{align*}
+        p(X) &= \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}} \\
+        \frac{p(X)}{1-p(X)} &= e^{\beta_0 + \beta_1 X} \\
+        \log{ \left( \frac{p(X)}{1-p(X)} \right)} &= \beta_0 + \beta_1 X\\ 
+    \end{align*} \pause 
+
+    \item The coefficients $\beta_0$ and $\beta_1$ are estimated based on the available \textit{training data} using the \textbf{maximum likelihood} method.
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Logistic regression}{Estimating the model coefficients}
+
+    The basic intuition behind using maximum likelihood to fit a logistic regression model is as follows: \pause
+    
+
+    \begin{itemize}
+        \item We seek for estimates for $\beta_0$ and $\beta_1$ such that the \textcolor{blue}{predicted probability} $\hat{p}(x_i)$ of default for each individual, using (\ref{eq:lr-one}), corresponds \textcolor{blue}{as closely as possible} to the individual's \textcolor{blue}{observed status}. \pause
+
+        \item This intuition can be formalized using a mathematical equation called a likelihood function: \pause 
+
+        \begin{equation}
+            \ell(\beta_0, \beta_1) = \prod_{i:y_i =1} p(x_i) \prod_{i':y_{i'}=0} (1-p(x_{i'}))
+        \end{equation} \pause 
+
+        \item The estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ are chosen to maximize this likelihood function. 
+    \end{itemize}
+
+
+    
+\end{frame}
+
+
+\begin{frame}{Logistic regression}{Notes}
+
+Some notes about logistic regression:
+
+\begin{itemize}
+    \item We can measure the accuracy of the coeﬃcient estimates by computing their standard errors. \pause
+
+    \item The z-statistic associated with $\beta_1$ is equal to $ \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}$. \pause
+
+    \item With the z-statistic indicates evidence against the null hypothesis $H_0: \beta_1 = 0$. \pause
+
+    \item The null hypothesis implies that $ p(X) = \frac{e^{\beta_0}}{1+e^{\beta_0}}.$ \pause
+
+    \item To make predictions, we simply put the estimates $\hat{\beta}_0$ and $\hat{\beta}_1$ into the equation $\hat{p} = \frac{e^{\hat{\beta}_0 + \hat{\beta}_1 X}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1 X}}.$
+\end{itemize}
+    
+\end{frame}
+
+\subsection{Multinomial logistic regression}
+\begin{frame}{Multinomial logistic regression}{Multinomial model}
+
+\begin{itemize}
+    \item It is possible to extend the two-class logistic regression approach to the setting of $K > 2$ classes. \pause 
+    \item This extension is sometimes known as \textit{multinomial logistic regression}. \pause 
+    \item To do this, we first select a single multinomial class to serve as the \textit{baseline}. \pause
+    \item Without loss of generality, we select the $K$th logistic class for this role. \pause
+    \item The logistic model now becomes, \pause 
+
+    $$ \text{Pr } (Y=k|X=x) = \frac{ e^{ \beta_{k_0} + \beta_{k_1} x_1 + \cdots + \beta_{k_p} x_p }  }{1 + e^{ \sum_{l=1}^{K-1} \beta_{l_0} + \beta_{l_1} x_1 + \cdots + \beta_{l_p} x_p } }  $$
+
+    for $k = 1, \cdots, K-1,$ and
+
+    $$ \text{Pr } (Y=K|X=x) = \frac{ 1  }{1 + e^{ \sum_{l=1}^{K-1} \beta_{l_0} + \beta_{l_1} x_1 + \cdots + \beta_{l_p} x_p } }.$$
+
+    
+\end{itemize}
+
+    
+\end{frame}
+
+\begin{frame}{Multinomial logistic regression}{Softmax function}
+
+\begin{itemize}
+    \item An alternative coding for multinomial logistic regression, known as the \textit{softmax coding}. \pause
+
+
+    \item The softmax coding is equivalent to the coding just described in the sense that the fitted values, and other key model outputs will remain the same, regardless of coding.  \pause
+
+    \item In the softmax coding, rather than selecting a baseline class, we treat all $K$ classes symmetrically, and assume that for $k = 1, \cdots , K,$ \pause
+
+    
+    $$\text{Pr}(Y=k|X=x) =  \frac{ e^{ \beta_{k_0} + \beta_{k_1} x_1 + \cdots + \beta_{k_p} x_p }  }{e^{ \sum_{l=1}^{K} \beta_{l_0} + \beta_{l_1} x_1 + \cdots + \beta_{l_p} x_p } }.$$ \pause
+
+    \item Thus, rather than estimating coeﬃcients for $K-1$ classes, we actually estimate coeﬃcients for all $K$ classes.
+
+    
+\end{itemize}
+
+    
+\end{frame}

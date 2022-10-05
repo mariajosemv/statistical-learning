@@ -1,0 +1,29 @@
+\begin{frame}{When to use Linear vs quadratic discriminant analysis?}
+
+
+
+\begin{columns}[T]
+\column{0.5\linewidth}
+  \textbf{With linear discriminant analysis: }
+    \begin{itemize}
+        \item<1-> Assumes common covariance matrix and becomes linear in $x$, for a total of \textcolor{blue}{$Kp$} linear coeﬃcients to estimate. 
+
+        \item<3-> LDA is a much less flexible classifier. 
+
+        \item<5-> LDA can suﬀer from high bias.
+
+    \end{itemize}
+
+
+    \column{0.5\linewidth}
+   \textbf{With quadratic discriminant analysis:}
+    \begin{itemize}
+        \item<2->Estimates a separate covariance matrix for each class, for a total of \textcolor{blue}{$Kp(p+1)/2$} parameters. 
+
+        \item<4-> Recommended if the training set is very large, so that the variance is not a major concern. 
+        
+        \item<6-> Use it when the assumption of a common covariance matrix is clearly untenable.
+    \end{itemize}
+\end{columns}
+
+\end{frame}

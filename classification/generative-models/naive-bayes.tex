@@ -1,0 +1,74 @@
+\begin{frame}{Naive Bayes}{Introduction}
+    \begin{itemize}
+    
+        \item Recall that Bayes’ theorem provides an expression for the posterior probability, $p_k(x) =  \text{Pr}(Y=k|X=x)$ in terms of $\pi_1 , \cdots , \pi_K$ and $f_1(x), \cdots , f_K(x)$. \pause
+
+        \begin{equation*}
+           p_k(x) =  \text{Pr}(Y=k|X=x) = \frac{\pi_k f_k (x)}{  \sum_{l=1}^K \pi_l f_l(x)  }. 
+        \end{equation*} \pause
+        
+        \item As we saw in previous sections, estimating the prior probabilities $\pi_1 , \cdots , \pi_K$ is typically straightforward: for instance, we can estimate $\hat{\pi}_k$ as $\hat{\pi}_k = n_k / n$. \pause
+        
+        \item However, estimating $f_1(x), \cdots , f_K(x)$ is more subtle. \pause
+
+        \item The naive Bayes classifier assumes, 
+
+        \begin{equation}\label{eq:f-naive}
+            f_k(x) = f_{k_1} (x_1) \times f_{k_2} (x_2) \times \cdots \times f_{k_p} (x_p)  
+        \end{equation} \pause 
+        
+        where $f_{k_j}$ is the density function of the $j$th predictor among observations in the $k$th class. \pause  \textcolor{blue}{$\rightarrow$ Within the $k$th class, the $p$ predictors are independent. }
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Naive Bayes}{Introduction}
+    \begin{itemize}
+        \item Once we have made the naive Bayes assumption, we can plug (\ref{eq:f-naive}) into (\ref{eq:bayes}) to obtain an expression for the posterior probability,
+
+        \begin{equation}\label{eq:naive-prob}
+            p_k(x) = \frac{\pi_k f_{k_1} (x_1) \times f_{k_2} (x_2) \times \cdots \times f_{k_p} (x_p)  }{  \sum_{l=1}^K \pi_l f_{l_1} (x_1) \times f_{l_2} (x_2) \times \cdots \times f_{l_p} (x_p)  }
+        \end{equation} \pause
+
+        for $k = 1, \cdots, K.$
+
+        \item To estimate the one-dimensional density function $f_{kj}$ using training data $x_{1j} , \cdots, x_{nj} $, we have a few options.
+
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Naive Bayes}{Estimating the density function}
+
+\begin{enumerate}
+    \item \textbf{$X_j$ is quantitative and parametric} \pause
+
+    \begin{itemize}
+        \item We can assume that $X_j | Y=k \sim N(\mu_{jk}, \sigma_{jk}^2).$ \pause 
+
+        \\ $\rightarrow$ We assume that within each class, the $j$th predictor is drawn from a (univariate) normal distribution. \pause 
+
+        \item But predictors are independent from each other. \pause  
+        
+        \\ $\rightarrow$ the class-specific covariance matrix is diagonal. \pause 
+     \end{itemize}
+
+    \item \textbf{$X_j$ is quantitative and non-parametric} \pause 
+
+    \begin{itemize}
+        \item A very simple way to do this is by making a histogram for the observations of the $j$th predictor within each class. \pause 
+        \item Then, $f_{kj}(x_j)$ is the fraction of the training observations in the $k$th class that belong to the \textbf{same histogram bin} as $x_j$. \pause 
+        \item Alternatively, we can use a \textit{kernel density estimator}, which is essentially a smoothed version of a histogram
+    \end{itemize}
+
+    \item \textbf{$X_j$ is qualitative}  \pause 
+    \begin{itemize}
+        \item Simply count the proportion of training  estimator observations for the $j$th predictor corresponding to each class. 
+    \end{itemize}
+    
+\end{enumerate}
+
+
+\end{frame}
+
