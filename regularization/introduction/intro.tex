@@ -1,0 +1,78 @@
+\begin{frame}{Introduction}
+
+\begin{itemize}
+    \item In the regression setting, the standard linear model \pause
+    $$Y = \beta_0 + \beta_1 X + \cdots + \beta_p X_p + \epsilon$$
+
+    is typically fitted using least squares. \pause
+
+    \item But as we will see, OLS procedures can have problems with \textbf{prediction accuracy} and \textbf{model interpretability}.
+    
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Introduction}
+
+\textbf{Prediction Accuracy:} \pause 
+
+\begin{itemize}
+    \item If the true relationship between the $Y$ and $X$ is approximately linear, OLS fit will have low bias. \pause 
+    
+    \item If $n \gg p$, then OLS fit tend to also have low variance, and hence will perform well on test observations. \pause 
+
+    \item If $n \not \gg p$ then there can be a lot of variability in the OLS fit. \pause 
+    \\ $\rightarrow$ This results in overfitting and poor predictions on test set. \pause 
+
+    \item If $n < p$, then there is no longer a unique OLS: the variance is infinite so the method cannot be used at all. \pause 
+\end{itemize}
+
+\textbf{Model Interpretability:} \pause 
+
+\begin{itemize}
+    \item It is often the case that some variables used in a multiple regression model are in fact not associated with $Y$. \pause 
+
+    \item Including such variables leads to complexity in the resulting model. \pause 
+    
+    \item Removing these variables we lead to a model that is more easily interpreted. \pause 
+    
+    \item With OLS is extremely unlikely to yield any coeﬃcient estimates that are exactly zero. 
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Introduction}
+
+We'll discuss two important alternatives methods to using OLS: \pause 
+
+\begin{enumerate}
+    \item \textbf{Shrinkage} \pause  
+    \begin{itemize}
+        \item Fit a model involving all $p$ predictors. \pause 
+
+        \item Estimated coeﬃcients are shrunken towards zero. \pause 
+
+        \item This shrinkage has the eﬀect of reducing variance \pause 
+    \end{itemize}
+
+    \item \textbf{Dimension reduction} \pause 
+    \begin{itemize}
+        \item Projecting the $p$ predictors into an $M-$dimensional subspace, where $M < p$. \pause 
+
+        \item This is done by computing $M$ diﬀerent linear combinations, or projections, of the variables. \pause 
+        
+        \item Use these projections as predictors in OLS. 
+    \end{itemize}
+    
+\end{enumerate}
+
+    
+\end{frame}
+
+
+
+
+
+

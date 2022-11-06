@@ -1,0 +1,62 @@
+\begin{frame}{Shrinkage Methods}{Ridge Regression}
+
+\begin{itemize}
+    \item Recall that OLS fitting procedure estimates $\beta_0 , \beta_1 , \cdots , \beta_p$ using the values that minimize \pause
+    
+    \begin{equation}
+        RSS = \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p  \beta_j x_{ij} )^2
+    \end{equation} \pause 
+
+    \item \textit{Ridge regression} is very similar to OLS, except that the coeﬃcients ridge are estimated by minimizing a slightly diﬀerent quantity. \pause 
+
+    \begin{equation*}
+        \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p  \beta_j x_{ij} )^2 + \lambda \sum_{j=1}^p \beta_j^2 = RSS + \lambda \sum_{j=1}^p \beta_j^2,
+    \end{equation*} \pause 
+
+    where $\lambda \geq 0$ is a \textit{tuning parameter} to be determined separately.
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Shrinkage Methods}{Ridge Regression}
+
+        \begin{equation} \label{eq:ridge}
+        \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p  \beta_j x_{ij} )^2 + \lambda \sum_{j=1}^p \beta_j^2 = RSS + \lambda \sum_{j=1}^p \beta_j^2,
+    \end{equation} \pause 
+
+    Equation (\ref{eq:ridge}) trades oﬀ two diﬀerent criteria: \pause
+    
+    \begin{enumerate}
+        \item As with OLS, ridge regression seeks coeﬃcient estimates that fit the data well, by making the RSS small. \pause 
+
+        \item The term \textcolor{blue}{$ \lambda \sum_{j=1}^p \beta_j^2$} is the \textit{shirkage penalty}.  \\ \pause 
+        $\rightarrow$ is small when $\beta_0 , \beta_1 , \cdots , \beta_p$ are close to zero. \pause \\ 
+        $\rightarrow$ It has the eﬀect of shrinking $\beta_j$ towards zero. \pause     
+    \end{enumerate}
+
+    $\lambda$ serves to control the impact of these two terms on the coeﬃcient estimates. \pause 
+
+    \begin{itemize}
+        \item When $\lambda = 0$, the penalty term has no eﬀect. The results are the OLS estimates. \pause 
+        \item When $\lambda \rightarrow \infty$, the impact of the shrinkage penalty grows, and the ridge regression coeﬃcient estimates will approach zero.
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Shrinkage Methods}{Ridge Regression}
+    \begin{itemize}
+        \item OLS generates only one set of coeﬃcient estimates. \pause 
+        
+        \item But ridge regression will produce a diﬀerent set of coeﬃcient estimates, $\hat{\beta}^R_\lambda$, for each value of $\lambda$. \pause 
+        
+        \item Selecting a good value for $\lambda$ is critical; we defer this discussion later, where we use cross-validation. \pause 
+
+        \item The disadvantage is that ridge will include all $p$ predictors in the final model. \pause 
+        
+        \item The penalty $\lambda \sum \beta_j^2$ in (\ref{eq:ridge}) will shrink all of the coeﬃcients \textbf{towards zero}, but it will not set any of them exactly to zero (unless $\lambda = \infty$). \pause 
+        
+        \item This may not be a problem for prediction accuracy. \pause 
+        
+        \item But it can create a challenge in model interpretation.
+    \end{itemize}
+\end{frame}

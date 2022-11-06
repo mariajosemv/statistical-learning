@@ -1,0 +1,56 @@
+\begin{frame}{Dimension Reduction Methods}{Partial Least Squares}
+
+    \begin{itemize}
+        \item PLS is a \textcolor{blue}{supervised} alternative to PCR. \pause 
+
+        \item  We first identify  $Z_1 , \cdots , Z_M$ and then fit an OLS model using these $M$ new features. \pause 
+    \end{itemize}
+
+\textbf{How PLS compute first directions: } \pause 
+
+Recall the equation (\ref{eq:z-combs}), \pause 
+
+\begin{equation*}
+    Z_m = \sum_{j=1}^p \phi_{jm} X_j
+\end{equation*} \pause 
+
+\begin{enumerate}
+    \item Standardize $p$ predictors. \pause 
+    \item Computes $Z_1$ by setting each $\phi_{j1}$ in (\ref{eq:z-combs}) equal to the coeﬃcient from the simple linear regression of $Y$ onto $X_j$. \\ \pause 
+    $\rightarrow$ $Z_1 = \beta_1 = X_j^T(y - \beta_0)$ \pause 
+\end{enumerate}
+
+\begin{itemize}
+    \item In fact, this coeﬃcient is proportional to the correlation between $Y$ and $X_j$. \pause 
+    
+    \item PLS places the highest weight on the variables that are most strongly related to $Y$.
+
+    
+    
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Dimension Reduction Methods}{Partial Least Squares}
+
+\textbf{To identify the second PLS direction:}
+
+    \begin{enumerate}
+        \item We make a regression of each variable on $Z_1$ and take the residuals. \pause 
+        
+        \item These residuals can be interpreted as the \textit{remaining information} that has not been explained by the first PLS direction. \pause 
+        
+        \item We then compute $Z_2$ using this orthogonalized data in exactly the same fashion as $Z_1$ was computed based on the original data. \pause 
+    \end{enumerate}
+
+
+$\rightarrow$ This iterative approach can be repeated $M$ times to identify multiple PLS components $Z_1 , \cdots , Z_M $. \\ \pause 
+
+
+$\rightarrow$ Finally, we use OLS to predict $Y$ using $Z_1 , \cdots , Z_M $ in exactly the same fashion as for PCR. \\ \pause 
+
+$\rightarrow$ The number $M$ of PLS directions used is a tuning parameter that is typically chosen by cross-validation.
+
+    
+\end{frame}

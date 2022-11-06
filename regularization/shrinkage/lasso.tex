@@ -1,0 +1,23 @@
+\begin{frame}{Shrinkage Methods}{Lasso Regression}
+
+\begin{itemize}
+    \item The lasso is an alternative that overcomes the main disadvantage of ridge regression. \pause 
+    
+    \item The lasso coeﬃcients, $\hat{\beta}_\lambda^L$ , minimize the quantity \pause 
+
+    \begin{equation} \label{eq:lasso}
+        \sum_{i=1}^n (y_i - \beta_0 - \sum_{j=1}^p  \beta_j x_{ij} )^2 + \lambda \sum_{j=1}^p | \beta_j | = RSS + \lambda \sum_{j=1}^p | \beta_j |,
+    \end{equation} \pause 
+
+    \item As ridge regression, the lasso shrinks the coeﬃcient estimates towards zero. \pause 
+    
+    \item However, this penalty has the eﬀect of forcing some of the coeﬃcient estimates to be \textbf{exactly equal to zero} when $\lambda$ is suﬃciently large. \\ \pause 
+    $\rightarrow$ Lasso performs variable selection. \pause 
+
+    \item We say that the lasso yields \textit{sparse models}: models that involve only a subset of the variables. \pause
+
+    \item Selecting a good value of $\lambda$ for the lasso is also critical. 
+    
+\end{itemize}
+    
+\end{frame}
