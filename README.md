@@ -5,3 +5,4 @@ Notes in LaTeX of my Data science course at the USACH 👩🏻‍🎓🇨🇱, b
 
 1. [Linear regression](https://github.com/mariajosemv/statistical-learning/tree/main/linear-regression) 
 2. [Classification](https://github.com/mariajosemv/statistical-learning/tree/main/classification)
+3. [Resampling methods](https://github.com/mariajosemv/statistical-learning/tree/main/resampling-methods)
