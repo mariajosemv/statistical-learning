@@ -1,0 +1,53 @@
+\subsection{Introduction}
+\begin{frame}{Bootstrap}{Introduction}
+    \begin{itemize}
+        \item The bootstrap approach allows us to use a computer to emulate the process of obtaining new sample sets. \pause 
+        \item With this we can estimate the variability of a estimator $\hat{\alpha}$ without generating additional samples. \pause 
+        \item The goal is to obtain \textbf{distinct datasets} by repeatedly sampling observations from the \textbf{original dataset}. \pause 
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Bootstrap}{Introduction}
+
+\begin{columns}
+
+     \column{0.40\linewidth}
+    \begin{itemize} \footnotesize
+        \item<1-> We have a dataset $Z$ that contains $n=3$ observations. 
+
+        \item<2-> We randomly select $n$ observations from $Z$ to produce a bootstrap data set, $Z^{\ast 1}$. 
+        
+        \item<3-> The sampling is done \textit{with replacement}: the same observation can occur more than once in $Z^{\ast 1}$. 
+
+        \item<4-> We use $Z^{\ast 1}$ to produce a new estimate for $\alpha$, called $\hat{\alpha}^{\ast 1}$.  
+
+        \item<5-> This procedure is repeated $B$ times for some large value of $B$. 
+        
+    \end{itemize}
+
+
+     \column{0.60\linewidth}
+        \begin{figure}
+        \centering
+        \includegraphics<2->[width=6cm]{bootstrap/bootstrap.png}
+    \end{figure}
+
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Bootstrap}{Introduction}
+
+
+    
+        $\rightarrow$ The standard error of these bootstrap estimates $\hat{\alpha}^{\ast 1}, \cdots , \hat{\alpha}^{\ast B}$ is given by 
+
+        \begin{equation}
+            SE_B (\hat{\alpha}) = \sqrt{ \frac{1}{B-1}  \sum_{r=1}^B \left( \hat{\alpha}^{\ast r} - \frac{1}{B}  \sum_{r;=1}^B  \hat{\alpha}^{\ast r'}  \right)^2  }
+        \end{equation}
+
+
+    
+\end{frame}

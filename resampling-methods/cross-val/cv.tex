@@ -1,0 +1,35 @@
+\subsection{Introduction}
+\begin{frame}{Cross-Validation}{Introduction}
+
+\begin{itemize}
+    \item Recall the \textit{test error rate} and the \textit{training error rate}: \pause
+    \begin{enumerate}
+        \item Test error rate: Average error that results from using a model to predict the response on a \textbf{new observation}. \pause
+        \item Training error rate: calculated by applying the model to the observations used in its training. \pause 
+    \end{enumerate}
+
+    $\rightarrow$ \textcolor{blue}{We are interested in the model which results in a lowest test error}. \pause \\
+    $\rightarrow$ But a test dataset is not always available. \pause
+
+    \item To deal with this, we instead consider \textbf{holding out} a subset of the training observations from the fitting process. \pause \\ 
+    
+    \item Then we apply the model to those held-out observations to obtain the test error rate. 
+    
+\end{itemize}
+    
+\end{frame}
+
+\subsection{The validation set approach}
+\input{cross-val/val-set.tex}
+
+\subsection{Leave-one-out cross-validation}
+\input{cross-val/leave-one-out.tex}
+
+\subsection{k-fold cross-validation}
+\input{cross-val/k-fold.tex}
+
+\subsection{Bias-variance trade-oﬀ for k-fold cross-validation}
+\input{cross-val/bias-variance.tex}
+
+\subsection{Cross-validation on classification problems}
+\input{cross-val/cv-for-class.tex}

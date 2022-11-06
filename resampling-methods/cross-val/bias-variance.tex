@@ -1,0 +1,52 @@
+\begin{frame}{Cross-Validation}{Bias-variance trade-oﬀ for k-fold cross-validation}
+
+Summarizing, 
+
+\begin{itemize}
+    \item Validation set approach can lead to overestimates of the test error rate. \pause \\
+    $\rightarrow$ The training set used to fit the model contains only half the observations of the entire data set. \pause 
+
+    \item LOOCV will give approximately unbiased estimates of the test error. \pause \\
+    $\rightarrow$ Each training set contains $n - 1$ observations, almost as many as the full number of observations. \pause
+
+    \item k-fold CV for $k = 5$ or $k = 10$ will lead to an intermediate level of bias. \pause \\ 
+    $\rightarrow$ Each training set contains approximately $(k - 1)n/k$ observations. \pause 
+
+\end{itemize}
+
+
+\textcolor{blue}{For bias reduction, LOOCV is to be preferred to k-fold CV.} 
+
+\end{frame}
+
+\begin{frame}{Cross-Validation}{Bias-variance trade-oﬀ for k-fold cross-validation}
+    
+However, there is some problems with LOOCV: 
+
+\begin{itemize}
+    \item Has higher variance than does k-fold CV with $k < n$. \pause 
+    \item We are using almost identical training observations to then average the outputs. \pause \\ 
+    \item These outputs are highly correlated with each other! \pause 
+
+\end{itemize}
+
+In contrast, when using k-fold CV with $k < n$, \pause 
+
+\begin{itemize}
+    \item We split the data into folds and then average the outputs. \pause 
+    \item The outputs are somewhat less correlated with each other. \pause 
+\end{itemize}
+
+The mean of \textcolor{blue}{many highly correlated} quantities has higher variance than does the mean of many quantities that are not
+as highly correlated. \pause 
+
+\begin{block}{Bias-variance trade-off}
+    \begin{itemize}
+        \item Given these considerations, one performs k-fold cross-validation using $k = 5$ or $k = 10$. \pause 
+        \item These values have been shown to yield test error rate that suﬀer neither from excessively high bias nor from very high variance.
+    \end{itemize}
+\end{block}
+
+
+    
+\end{frame}

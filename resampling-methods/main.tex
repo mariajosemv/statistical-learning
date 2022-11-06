@@ -1,0 +1,121 @@
+\documentclass[10pt]{beamer}
+\usepackage[utf8]{inputenc}
+
+\usepackage{multirow,rotating}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{siunitx}
+\usepackage{amsmath, amssymb}
+\usepackage{mathtools,nccmath}%
+\usepackage{etoolbox, xparse} 
+\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+
+
+
+\setbeamersize{text margin left=3mm,text margin right=3mm} 
+
+\usepackage[font=small]{caption}
+\usepackage{xcolor}
+
+
+\usecolortheme{dolphin}
+
+% set colors
+\definecolor{myNewColorA}{RGB}{100,149,237}
+\definecolor{myNewColorB}{RGB}{100,149,237}
+\definecolor{myNewColorC}{RGB}{100,149,237} % {130,138,143}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+\setbeamercolor*{caption name}{fg=myNewColorA}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\setbeamercolor{block body}{bg=structure!10}
+\setbeamercolor{block title}{bg=myNewColorA}
+
+
+%------------------------------------------------------------
+% \titlegraphic{\includegraphics[height=0.75cm]{ua_eng_logo.png}} 
+
+
+
+
+
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{institute}{size=\footnotesize}
+\title{Resampling Methods}%title
+%\subtitle{ }%%subtitle
+\author[Maria Jose Medina]{Maria Jose Medina}%%authors
+
+\institute[USACH]{Universidad de Santiago de Chile}
+\date[\textcolor{white}{September 2022}]
+
+
+%\AtBeginSection{
+%\begin{frame}[noframenumbering]\frametitle{Table of Contents}
+%        \tableofcontents[currentsection]
+%        %\addtocounter{framenumber}{-1}
+%    \end{frame}}
+
+\AtBeginSubsection{
+    \begin{frame}[noframenumbering]\frametitle{Table of Contents}
+        \tableofcontents[currentsection,currentsubsection]
+        %\addtocounter{framenumber}{-1}
+    \end{frame}
+}
+
+%------------------------------------------------------------
+
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+
+
+\section{Introduction}
+\input{introduction/intro.tex}
+
+
+\section{Cross-Validation}
+\input{cross-val/cv.tex}
+
+\section{Bootstrap}
+\input{bootstrap/boot.tex}
+
+
+
+
+% The end
+\section*{Acknowledgement}  
+\begin{frame}
+
+\textcolor{myNewColorA}{\huge{\centerline{Thank you!}}}
+\vspace*{0.5cm}
+
+\textcolor{myNewColorA}{\Large{\centerline{Any question?}}}
+\vspace*{0.5cm}
+
+
+\end{frame}
+
+\end{document}
+
+
+

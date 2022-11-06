@@ -1,0 +1,22 @@
+\begin{frame}{Cross-validation}{The validation set approach}
+    
+\begin{enumerate}
+    \item Randomly divide the available set of observations into two parts: a training set and a validation set. \pause
+    \item Fit the model on the training set. \pause
+    \item Predict the responses for the observations in the validation set. \pause
+    \item The resulting validation set error rate provides an estimate of the test error rate. \pause
+\end{enumerate}
+
+\begin{block}{\textbf{Drawbacks:}}
+\begin{itemize}
+    \item The validation estimate of the test error rate can be highly variable:  \pause
+    \\ $\rightarrow$ Random splitting.  \pause
+
+    \item Statistical methods tend to perform worse when trained on fewer observations: \pause \\  The validation set error rate may tend to overestimate the test error rate for the entire data set. \pause 
+\end{itemize}
+
+    
+\end{block}
+
+We will present cross-validation, a method that addresses these two issues. 
+\end{frame}

@@ -1,0 +1,28 @@
+\begin{frame}{Cross-validation on classification problems}
+
+\begin{itemize}
+    \item Cross-validation can also be a very useful
+approach in the classification setting when $Y$ is qualitative. \pause
+
+    \item In this setting, cross-validation works just as described earlier in this chapter. \pause 
+    
+    \item The only difference is that rather than using MSE to quantify test error, we instead use the number of misclassified observations. \pause 
+
+    \item \textbf{For LOOCV}:
+
+    \begin{equation*}
+        CV_{(n)} = \frac{1}{n} \sum_{i=1}^n \text{Err}_i 
+    \end{equation*} \pause
+    
+    \item \textbf{For k-fold CV}:
+
+    \begin{equation*}
+        CV_{(k)} = \frac{1}{k} \sum_{i=1}^n \text{Err}_i 
+    \end{equation*}
+
+    where $\text{Err}_i = I(y_i \not = \hat{y}_i)$ \pause
+        
+    \end{itemize} 
+    
+    
+\end{frame}
