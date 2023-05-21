@@ -1,0 +1,21 @@
+\begin{frame}{Summary}
+\begin{itemize}
+    \item The idea of this ensemble methods is to use many \textit{weak learners} to construct a \textit{strong learner}. \pause 
+
+    \item They have the flexibility and the ability to handle predictors of mixed types. \pause 
+
+    \item We have now seen four approaches for fitting an ensemble of trees:
+
+    \begin{enumerate}
+        \item \textbf{Bagging}: the trees are grown independently on \textit{random samples} of the observations and the trees tend to be quite similar to each other. \pause 
+
+        \item \textbf{Random forests}: overcomes the problem with \textit{bagging} by using a \textit{random subset} of the features on each split. \pause 
+
+        \item \textbf{Boosting}: we do not draw any random samples, and each new tree is fit to the signal that is left over from the earlier trees. \pause 
+
+        \item \textbf{BART}: we once again only make use of the original data, and we grow the trees successively. However, each tree is perturbed. 
+    \end{enumerate}
+
+\end{itemize}
+    
+\end{frame}

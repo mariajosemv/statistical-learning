@@ -1,0 +1,33 @@
+\begin{frame}{Random Forests}
+    \begin{itemize}
+        \item As in bagging, we build a number of decision trees on bootstrapped samples. \pause 
+
+        \item But here, a random sample of $m$ predictors is chosen as split candidates from the full set of $p$ predictors. \pause
+
+        \item Typically we choose $m \approx \sqrt{p}$ \pause 
+    \end{itemize}
+
+    \textbf{Why?} \pause 
+
+    \begin{itemize}
+    \item Suppose that there is one strong predictor in the data set, along with others moderately strong predictors. \pause 
+
+    \item In the collection of bagged trees, most or all of the trees will use this strong predictor in the top split. \pause 
+
+    \item Consequently, all of the bagged trees will look quite similar to each other. \pause 
+
+    \item Then the predictions will be highly correlated. \pause 
+\end{itemize}
+
+
+\textbf{The solution} \pause 
+
+    \begin{itemize}
+        \item Random forests overcome this problem by forcing each split to consider only a subset of the predictors. \pause 
+        
+        \item On average $(p - m)/p$ of the splits will not even consider the strong predictor, and so other predictors will have more of a chance.
+    \end{itemize}
+    
+
+    
+\end{frame}

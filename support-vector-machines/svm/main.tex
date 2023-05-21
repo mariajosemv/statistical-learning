@@ -1,0 +1,186 @@
+\subsection{Classification with Non-Linear Decision Boundaries}
+
+\begin{frame}{Support Vector Machines}{Classification with Non-Linear Decision Boundaries}
+    
+\begin{itemize}
+    \item When there is a non-linear relationship between the predictors and the outcome, we enlarging the feature space using quadratic, cubic, and even higher-order polynomial functions of the predictors. \pause 
+
+    \item We fit a \textbf{support vector classifier} using $2p$ features, \pause 
+
+    \begin{equation*}
+        X_1, X_1^2, \cdots, X_p^2
+    \end{equation*} \pause 
+
+    \item Then, the maximization problem is \pause 
+
+    \begin{align}
+        & \max_{\beta_0, \cdots \beta_{p1}, \beta_{p2}, \epsilon_1, \cdots \epsilon_n, M} M \\ 
+        & \text{s.t. } y_i \left(  \beta_0 \sum_{j=1}^p \beta_{j1} x_{ij}  + \sum_{j=1}^p \beta_{j2} x^2_{ij}  \right) \geq M(1-\epsilon_i) \\
+        & \epsilon_i \leq C, \epsilon_i \geq 0, \sum_{j=1}^p \sum_{k=1}^2 \beta_{jk}^2 = 1.  
+    \end{align} 
+
+    
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Support Vector Machines}{Classification with Non-Linear Decision Boundaries}
+
+    \begin{align*}
+        & \max_{\beta_0, \cdots \beta_{p1}, \beta_{p2}, \epsilon_1, \cdots \epsilon_n, M} M \\ 
+        & \text{s.t. } y_i \left(  \beta_0 \sum_{j=1}^p \beta_{j1} x_{ij}  + \sum_{j=1}^p \beta_{j2} x^2_{ij}  \right) \geq M(1-\epsilon_i) \\
+        & \epsilon_i \leq C, \epsilon_i \geq 0, \sum_{j=1}^p \sum_{k=1}^2 \beta_{jk}^2 = 1.  
+    \end{align*} \pause 
+
+    \begin{itemize}
+    \item $M$ is the width of the margin.  \pause  
+    \item $\epsilon_i$ are \textit{slack variables}: allow observations to be on the wrong side of the margin or the hyperplane \pause
+    \begin{enumerate}
+        \item If $\epsilon_i = 0$ then the $i$th observation is on the correct side of the margin. \pause 
+        \item If $\epsilon_i > 0$ then the $i$th observation is on the wrong side of the margin \pause 
+        \item If $\epsilon_i > 1$ then it is on the wrong side of the hyperplane. \pause 
+    \end{enumerate}
+    \item $C$ is a tuning parameter: bounds the sum of the $\epsilon_i$'s and it's chosen by Cross-validation.  
+
+    \end{itemize}
+
+
+    
+\end{frame}
+
+\subsection{The Support Vector Machine}
+\begin{frame}{Support Vector Machines}{The Support Vector Machine (SVM)}
+
+\begin{itemize}
+    \item \textbf{SVM} is an extension of the support vector classifier that results from enlarging the feature space in a specific way, using \textbf{kernels}. \pause 
+
+    \item A \textbf{kernel} is a function that quantifies the similarity of two observations and it's a generalization of the inner product of the observations.  \pause 
+
+    \begin{equation*}
+        K(x_i, x_{i'})
+    \end{equation*} \pause 
+
+    \item In fact, it can be shown that the linear support vector classifier can be represented as \pause 
+
+    \begin{equation}\label{eq:linear-svc}
+        f(x) = \beta_0 + \sum_{i \in S} \alpha_i \langle x,x_i \rangle
+    \end{equation} \pause 
+
+    where, \pause 
+    \begin{enumerate}
+        \item $x$ is the new point and $x_i$ are the training points. \pause 
+        \item $\alpha_i$ is the coefficient of the supports vectors. 
+        \item $S$ is the collection of indices of the support points. 
+    \end{enumerate}
+
+    
+\end{itemize}
+
+    
+\end{frame}
+
+\begin{frame}{Support Vector Machines}{The Support Vector Machine (SVM)}
+
+\begin{itemize}
+    
+    \item If we simply use, \pause 
+
+    \begin{equation}\label{eq:linear-kernel}
+        K(x_i, x_{i'}) = \sum_{j=1}^p x_{ij}x_{i'j}
+    \end{equation} \pause 
+    
+    in eq. (\ref{eq:linear-svc}) the result would just give us back the support vector classifier. \pause 
+
+    \item Then, eq. (\ref{eq:linear-kernel}) is known as a \textbf{linear kernel} because the support vector classifier is linear in the features. 
+
+    \item But one could instead choose another form for the kernels 
+
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Support Vector Machines}{The Support Vector Machine (SVM)}
+
+\textbf{Polynomial kernel} \pause 
+
+\begin{itemize}
+    \item It takes the form, \pause 
+    \begin{equation}
+         K(x_i, x_{i'}) = ( 1 +  \sum_{j=1}^p x_{ij}x_{i'j} )^d
+    \end{equation} \pause
+    where $d > 0$ \pause 
+    \item Using such a kernel with $d > 1$, leads to a much more flexible decision boundary.  \pause 
+    \item It essentially amounts to fitting a SVC in a higher-dimensional space, rather than in the original feature space. \pause 
+    \item In this case the function has the form  \pause 
+    \begin{equation}
+         f(x) = \beta_0 + \sum_{i \in S} \alpha_i K(x, x_{i}).
+    \end{equation} \pause 
+
+\end{itemize}
+
+
+    
+\end{frame}
+
+\begin{frame}{Support Vector Machines}{The Support Vector Machine (SVM)}
+
+
+\textbf{Radial kernel} \pause 
+
+\begin{itemize}
+    \item It takes the form, \pause 
+    \begin{equation}
+         K(x_i, x_{i'}) = exp ( -\gamma \sum_{j=1}^p    (x_{ij} - x_{i'j'})^2   ) \, \, \gamma > 0. 
+    \end{equation} \pause
+    \item Then,  \pause 
+    \begin{equation*}
+                 f(x) = \beta_0 + \sum_{i \in S} \alpha_i K(x, x_{i}).
+    \end{equation*} \pause 
+    \item If $x^\ast$ is far from $x_i$ in terms of Enclidean distance, then \pause 
+
+    \begin{enumerate}
+        \item $(x_{ij} - x_{i'j'})^2$ will be large, \pause 
+        \item $K(x_i, x_{i'}) = exp ( -\gamma \sum_{j=1}^p    (x_{ij} - x_{i'j'})^2 )$ will be tiny. \pause 
+        \item $x_i$ will play virtually no role in $f(x^\ast)$ \pause 
+    \end{enumerate}
+    
+    \item In other words, radial kernel has very local behavior. \pause 
+    \item Only nearby training observations have an eﬀect on the class label of a test observation.
+\end{itemize}
+
+
+
+\end{frame}
+
+\subsection{SVMs with More than Two Classes}
+\begin{frame}{Support Vector Machines}{SVMs with More than Two Classes} 
+
+Suppose that $x^\ast$ is a test observation. To perform SVM for $K > 2$ classes there are two approaches to follow: \pause 
+
+\begin{itemize}
+    \item \textbf{One-Versus-One Classification} \pause 
+    \begin{enumerate}
+        \item Construct $K(K-1)/2$ SVMs.  \pause 
+        \item Compare each SVM with a pair of classes.  \pause 
+        \item For example, one SVM might compare the $k$th class $(+1)$ to the $k'$th class $(-1)$.   \pause 
+         
+        \item  We count the number of times that $x^\ast$ is assigned to each of the $K$ classes.  \pause 
+
+        \item We assign $x^\ast$ to the most frequent class. \pause
+    \end{enumerate}
+
+    \item \textbf{One-Versus-All Classification}
+    \begin{enumerate}
+        \item We fit $K$ SVMs, each time comparing one of the $K$ classes to the remaining $K - 1$ classes.  \pause 
+        \item Let $\beta_{0k} ,\cdots, \beta_{pk} $ denote the parameters that result from fitting an SVM comparing the $k$th class $(+1)$ to the others $(-1)$.   \pause 
+        \item We assign to $x^\ast$ to the class for which $\beta_{0k} ,\cdots, \beta_{pk} x_p^\ast $ is largest. \pause
+        \item The previous amount is the level of level of confidence that $x^\ast$ belongs to the $k$th class rather than $(k-1)$.
+    \end{enumerate}
+\end{itemize}
+    
+\end{frame}
+
+
+
+

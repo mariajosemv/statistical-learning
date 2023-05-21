@@ -1,0 +1,237 @@
+\subsection{Prediction via Stratification of the Feature Space}
+\begin{frame}{The Basics of Decision Trees}{Prediction via Stratification of the Feature Space}
+    Roughly speaking, there are two steps for building a regression tree: \pause 
+
+    \begin{enumerate}
+        \item \textbf{Divide the predictor space} \\ \pause
+        Divide the set of possible values of $X_1, \cdots, X_p$ into $J$ disticnt and non-overlapping regions, $R_1, \cdots, R_J$ \pause 
+
+        \item \textbf{Make prediction for every $R_j$} \\ \pause 
+        For every observation that falls into the region $R_j$ , we make the same prediction. \pause 
+    \end{enumerate}
+
+    The goal is to find $R_1, \cdots, R_J$ that minimize the $RSS$, given by \pause 
+
+    \begin{equation*}
+        \sum_{j=1}^J \sum_{i \in R_j} (y_i - \hat{y}_{R_j})^2
+    \end{equation*}
+
+
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Prediction via Stratification of the Feature Space}
+    To construct $R_1, \cdots, R_J$ we use the \textbf{recursive binary splitting} approach: \pause  
+
+    \begin{enumerate}
+        \item \textbf{Define the \textit{region of predictor space}} \\ \pause 
+        It's the space in which $X_j$ takes on a value less than the cutpoint $s$. \\ 
+        For example, for $J=2$ \\
+
+        \begin{align*}
+            R_1 (j,s) = \{X|X_j < s\}, && R_2 (j, s) = \{X|X_j \geq s\}
+        \end{align*} \pause 
+
+        \item \textbf{Minimize RSS} \\ \pause 
+        We seek the value $j$ and $s$ that minimize the equation, \pause 
+
+        \begin{equation*}
+            \sum_{i: x_i \in R_1(j,s)} (y_i - \hat{y}_{R_{1}} )^2 + \sum_{i: x_i \in R_2(j,s)} (y_i - \hat{y}_{R_{2}} )^2
+        \end{equation*}
+
+        \item \textbf{Repeat 1 and 2 in one of the previous identified regions} \pause
+
+        \item \textbf{Continue until a stopping
+criterion is reached} \\ 
+
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Prediction via Stratification of the Feature Space}
+
+    \begin{enumerate}
+    \setcounter{enumi}{5}
+        \item \textbf{Predict the response $y$ for $x$}\\ \pause  
+        $y$ is the \textit{mean of the training observations} in the region to which $x$ belongs. \pause 
+    \end{enumerate}
+    For instance, 
+    \begin{itemize}
+        \item Suppose that in Step 1 we obtain two regions, $R_1$ and $R_2$. \pause 
+        \item The \textit{response means} of the training observations in $R_1$ is 10, and  in $R_2$ is $20$. \pause 
+        \item  For a given observation $X = x$, \\ \pause 
+        $\rightarrow$ If $x \in R_1$, we will predict a value of $10$. \pause \\ 
+        $\rightarrow$ If $x \in R_2$, we will predict a value of $20$. \pause
+    \end{itemize}
+    
+\end{frame}
+
+
+\subsection{Tree Pruning}
+\begin{frame}{The Basics of Decision Trees}{Tree Pruning}
+
+\begin{itemize}
+    \item The process described is likely to overfit the data, leading to poor test set performance. \pause 
+    \item This is because the resulting tree might be too complex. \pause 
+    \item One way to solve this is consider a very large tree $T_0$ , and then prune it back in order to obtain a subtree that leads to the \textbf{lowest test error rate}. \pause 
+    \item \textbf{Cost complexity pruning} —also known as \textit{weakest link pruning}—gives us a way to do just this.
+    
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Tree Pruning}
+    \begin{itemize}
+        \item  We consider a sequence of trees indexed by a tuning parameter $\alpha$. \pause
+        
+        \item For each value of $\alpha$ there corresponds a subtree $T \subset T_0$ such that \pause 
+        \begin{equation*}
+            \sum_{m=1}^{|T|} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha |T|
+        \end{equation*} 
+    is as small as possible. \pause 
+        Where, 
+        \begin{itemize}
+            \item $|T|$ indicates the number of terminal nodes of the tree $T$. \pause 
+            \item $R_m$ is the subset of predictor space corresponding to the $m$th terminal node. \pause 
+            \item $\hat{y}_{R_{m}}$ is the predicted response associated with $R_m$. \pause 
+            \item $\alpha$ controls a trade-oﬀ between the subtree's complexity and its fit to the training data.
+        \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Tree Pruning}
+
+For each value of $\alpha$ there corresponds a subtree $T \subset T_0$ such that \pause 
+        \begin{equation}\label{eq:alpha_tree}
+            \sum_{m=1}^{|T|} \sum_{i: x_i \in R_m} (y_i - \hat{y}_{R_m})^2 + \alpha |T|
+        \end{equation} 
+    is as small as possible. \pause 
+
+\begin{itemize}
+    \item When $\alpha = 0$, then $T = 
+T_0$. \pause
+
+    \item As $\alpha$ increases, the quantity (\ref{eq:alpha_tree}) will tend to be minimized for a smaller subtree. 
+
+    \item We can select a value of $\alpha$ using cross-validation as is described next. 
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Tree Pruning}
+    \textbf{Algorithm for Building a Regression Tree}
+
+    \begin{enumerate}
+        \item Use recursive binary splitting to grow a large tree on the training data, stopping only when a threshold is reached. \pause 
+
+        \item Use K-fold cross-validation to choose $\alpha$. That is, divide the training observations into $K$ folds. For each $k = 1, \cdots , K$: \pause
+
+        \begin{enumerate}[a]
+            \item Repeat step 1 on all but the $k$th fold of the training data. \pause
+
+            \item Evaluate the mean squared prediction error on the data in the left-out kth fold, as a function of $\alpha$. \pause
+        \end{enumerate}
+
+        Average the results for each value of $\alpha$, and pick $\alpha$ to minimize the average error. \pause
+
+        \item Return the subtree that corresponds to the chosen value of $\alpha$.
+        
+    \end{enumerate}
+\end{frame}
+
+\subsection{Classification Trees}
+\begin{frame}{The Basics of Decision Trees}{Classification Trees}
+
+\begin{itemize}
+    \item We also use binary splitting to grow a classification tree. \pause
+    \item We can use different criterias for making the binary splits \pause
+\end{itemize}
+
+\begin{enumerate}
+    \item  \textbf{Classification error rate (CER)} \pause \\
+    \begin{itemize}
+        \item The plan is to assign and observation in a region $R_i$ to the \textit{most commonly occurring class} \pause
+
+        \item Then, CER is the fraction of observations in the region $R_i$ that \textcolor{blue}{do not belong} to the \textit{most common class}. \pause 
+        \begin{equation*}
+        E = 1 - \max_k({\hat{p}_{mk}}).
+        \end{equation*} \pause 
+
+        $\rightarrow \hat{p}_{mk}$ is the proportion of observations in the $m$th region that are from the $k$th class. \pause 
+
+        \item But, CER is not suﬃciently sensitive for tree-growing. \pause
+        
+        \item In practice two other measures are preferable.
+    \end{itemize}
+    
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{The Basics of Decision Trees}{Classification Trees}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item \textbf{Gini index} \pause 
+    \begin{itemize}
+        \item Is a measure of total variance across the $K$ classes. \pause 
+        \begin{equation*}
+            G = \sum_{k=1}^K \hat{p}_{mk}(1-\hat{p}_{mk}).
+        \end{equation*} \pause
+        \item $G$ is small if $\hat{p}_{mk} \rightarrow 1$ or $\hat{p}_{mk} \rightarrow 0$. \pause
+        \item $G$ is referred to as a measure of \textit{node purity}: \pause a small value indicates that a node contains predominantly observations from a single class. \pause
+    \end{itemize}
+
+    \item \textbf{Entropy} \pause 
+    \begin{itemize}
+        \item Measures the impurity or uncertainty in a group of observations. \pause 
+        \begin{equation*}
+                D = - \sum_{k=1}^K \hat{p}_{mk} \log \hat{p}_{mk}.
+        \end{equation*} \pause
+        \item It can be shown that $D \rightarrow 0$ if all $\hat{p}_{mk} \rightarrow 0$ or $\hat{p}_{mk} \rightarrow 1$. \pause
+        \item In this sense, Entropy is also referred as a measure of \textit{node purity}.
+        
+    \end{itemize}
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{The Basics of Decision Trees}{Classification Trees}
+
+    \begin{itemize}
+        \item When building a classification tree, either the Gini index or the entropy are typically used to evaluate the \textbf{quality} of a particular split. \pause 
+
+        \item Any of these three approaches might be used when \textbf{pruning} the tree, but CER is preferable if \textbf{prediction accuracy} of the final pruned tree is the goal. 
+    \end{itemize}
+
+\end{frame}
+
+\subsection{Advantages and Disadvantages of Trees}
+\begin{frame}{The Basics of Decision Trees}{Advantages and Disadvantages of Trees}
+
+\begin{columns}[T]
+    \column{0.5\linewidth}
+    \textbf{Advantages}
+    \begin{itemize}
+        \item[\checkmark] Trees can be displayed graphically, and are easily interpreted. \pause 
+
+         \item[\checkmark] Can handle qualitative predictors without the need to create dummy variables. \pause 
+    \end{itemize}
+
+
+    \column{0.5\linewidth}
+    \textbf{Disadvantages}
+    \begin{itemize}
+        \item[$\times$] Do not have the same level of predictive accuracy as some methods seen before. \pause 
+
+         \item[$\times$] Suffers for high variance: a small change in the data can cause a large change in the final estimated tree. \pause 
+
+    \end{itemize}
+\end{columns}
+
+\begin{block}{Note}
+    By aggregating many decision trees, using methods like bagging, random forests, and boosting, the predictive performance of trees can be substantially improved.
+\end{block}
+    
+\end{frame}
